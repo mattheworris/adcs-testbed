@@ -40,7 +40,9 @@ impl SerialLink {
         let speed = match baud {
             115_200 => libc::B115200,
             230_400 => libc::B230400,
-            460_800 => libc::B460800,
+
+            // #[cfg(target_os = "linux)]
+            // 460_800 => libc::B460800,
             _ => {
                 return Err(io::Error::new(
                     io::ErrorKind::InvalidInput,
