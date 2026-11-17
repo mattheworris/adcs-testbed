@@ -1,0 +1,3 @@
+# Arguments for adcs-fsw. Set --ground to your laptop's IP.
+# Use "--sim" instead of "--port ..." to run without the STM32.
+ADCS_ARGS="--port /dev/ttyS4 --baud 115200 --ground 192.168.1.50:5005"

@@ -1,0 +1,14 @@
+[Unit]
+Description=ADCS flight software
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+EnvironmentFile=-/etc/default/adcs-fsw
+# $ADCS_ARGS (no braces) is split into separate arguments by systemd.
+ExecStart=/usr/bin/adcs-fsw $ADCS_ARGS
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

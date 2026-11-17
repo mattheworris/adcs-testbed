@@ -1,0 +1,34 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          adcs-fsw
+# Required-Start:    $network
+# Required-Stop:     $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: ADCS flight software
+### END INIT INFO
+
+DAEMON=/usr/bin/adcs-fsw
+PIDFILE=/var/run/adcs-fsw.pid
+LOG=/var/log/adcs-fsw.log
+ADCS_ARGS="--port /dev/ttyS4"
+[ -r /etc/default/adcs-fsw ] && . /etc/default/adcs-fsw
+
+case "$1" in
+  start)
+    echo "Starting adcs-fsw: $ADCS_ARGS"
+    start-stop-daemon -S -b -m -p $PIDFILE -x /bin/sh -- -c "exec $DAEMON $ADCS_ARGS >>$LOG 2>&1"
+    ;;
+  stop)
+    echo "Stopping adcs-fsw"
+    start-stop-daemon -K -p $PIDFILE
+    rm -f $PIDFILE
+    ;;
+  restart)
+    $0 stop; sleep 1; $0 start
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart}"; exit 1
+    ;;
+esac
+exit 0

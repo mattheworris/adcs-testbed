@@ -1,0 +1,11 @@
+[package]
+name = "adcs-core"
+description = "no_std ADCS building blocks: wire protocol, plant model, estimator, controller, device emulator"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+# sin/cos/atan2/sqrt/log without std (the STM32 has no libm of its own)
+libm = "0.2"

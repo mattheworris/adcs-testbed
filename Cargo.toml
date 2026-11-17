@@ -1,0 +1,17 @@
+# Workspace for the parts that build on a host or on Linux.
+# The STM32 firmware (emu/) is a separate project because it targets
+# thumbv7em-none-eabihf and pulls in Embassy.
+[workspace]
+members = ["core", "fsw"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+# Yocto Scarthgap ships Rust 1.75. Keep the code and the lockfile within it.
+rust-version = "1.75"
+license = "MIT"
+
+[profile.release]
+opt-level = "s"
+lto = true

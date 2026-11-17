@@ -1,0 +1,12 @@
+[package]
+name = "adcs-fsw"
+description = "Single-axis ADCS flight software for the BeagleBone Black"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+adcs-core = { path = "../core" }
+# termios for the UART (cfmakeraw, cfsetspeed, tcsetattr)
+libc = "0.2"
